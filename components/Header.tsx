@@ -1,11 +1,5 @@
 "use client";
-
 import React from 'react';
-import { ClerkLoaded, useUser ,SignInButton, UserButton, SignedIn} from '@clerk/nextjs'
-import Link from 'next/link';
-import Form from 'next/form';
-import { PackageIcon, TrolleyIcon } from '@sanity/icons';
-
 
 
 function Header() {
@@ -45,10 +39,10 @@ function Header() {
           <ClerkLoaded>
             <SignedIn>
               <Link href="/orders"
-              className='flex justify-evenly bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 m-2 items-center mt-2 sm:mt-0'
+                    className='flex justify-evenly bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 m-2 items-center mt-2 sm:mt-0'
               >
-              <PackageIcon className='w-6 h-6' />
-              <span>My Orders</span>
+                <PackageIcon className='w-6 h-6' />
+                <span>My Orders</span>
               </Link>
             </SignedIn>
 
@@ -62,14 +56,14 @@ function Header() {
               </div>
             </div>):(<SignInButton mode="modal"/>)}
             {user?.passkeys.length === 0 && (
-            <button 
-            className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors duration-200 m-2 items-center mt-2 sm:mt-0'
-            onClick={createClerkPassKey}
-            >
-              Create Passkey
-            </button>
+              <button
+                className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors duration-200 m-2 items-center mt-2 sm:mt-0'
+                onClick={createClerkPassKey}
+              >
+                Create Passkey
+              </button>
             )
-              
+
             }
           </ClerkLoaded>
         </div>
@@ -77,7 +71,6 @@ function Header() {
     </header>
   );
 }
-
 export default Header;
 
 
