@@ -1,68 +1,72 @@
 import { TrolleyIcon } from "@sanity/icons";
-import { defineField ,defineType} from "sanity";
+import { defineField, defineType } from "sanity";
 
 export const productType = defineType({
-  name: 'productType',
-  title: 'Product type',
+  name: 'product',
+  title: 'Product',
   type: 'document',
-  icon:TrolleyIcon,
+  icon: TrolleyIcon,
   fields: [
     defineField({
-      name: 'name',
       title: 'Product Name',
+      name: 'name',
       type: 'string',
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'slug',
       title: 'Slug',
+      name: 'slug',
       type: 'slug',
+      options: {
+        source: 'name',
+        maxLength: 96,
+      },
       validation: Rule => Rule.required(),
     }),
     defineField({
+      title: 'Product Image',
       name: 'image',
-      title: 'ProductImage',
       type: 'image',
       options: {
         hotspot: true,
       },
     }),
     defineField({
-      name: 'description',
       title: 'Description',
+      name: 'description',
       type: 'blockContent',
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'price',
       title: 'Price',
+      name: 'price',
       type: 'number',
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'categories',
       title: 'Categories',
+      name: 'categories',
       type: 'array',
-      of: [{type: 'reference', to: [{type: 'category'}]}],
+      of: [{ type: 'reference', to: [{ type: 'category' }] }],
     }),
     defineField({
-      name: 'stock',
       title: 'Stock',
+      name: 'stock',
       type: 'number',
       validation: Rule => Rule.required(),
     }),
   ],
   preview: {
     select: {
-      title: 'productType',
+      title: 'name',
       media: 'image',
-      subtitle:'price',
+      price: 'price',
     },
-    prepare(select) {
+    prepare(selection) {
       return {
-        title: select.title,
-        subtitle:`$${select.subtitle}`,
-        media: select.media,
+        title: selection.title,
+        subtitle: `$${selection.price}`,
+        media: selection.media,
       };
     },
   },

@@ -1,6 +1,9 @@
 "use client";
 import React from 'react';
-
+import {useUser, ClerkLoaded, SignedIn, SignInButton, UserButton } from '@clerk/nextjs';
+import {TrolleyIcon,PackageIcon} from "@sanity/icons";
+import Link from 'next/link';
+import Form from 'next/form';
 
 function Header() {
   const { user } = useUser()
